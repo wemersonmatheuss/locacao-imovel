@@ -7,6 +7,7 @@
 :root {
   /* FONT */
   --font-primary: "IBM Plex Mono", monospace;
+  --font-secondary: "Inter", sans-serif;
 
   /* COLORS */
   --text-primary: #000;
@@ -16,6 +17,3 @@
   --text-input: rgba(0, 0, 0, 0.3);
 }
 
-body {
-  font-family: var(--font-primary);
-}
