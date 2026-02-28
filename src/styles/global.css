@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
-/* 
-criar as variaveis de cores aquis
-*/
+:root {
+  /* FONT */
+  --font-primary: "IBM Plex Mono", monospace;
+
+  /* COLORS */
+  --text-primary: #000000;
+  --input-background: #E4E4E4;
+  --button-background: #26262E;
+  --button-text: #F6F6F6;
+}
+
+body {
+  font-family: var(--font-primary);
+}
