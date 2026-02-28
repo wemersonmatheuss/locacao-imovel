@@ -9,10 +9,11 @@
   --font-primary: "IBM Plex Mono", monospace;
 
   /* COLORS */
-  --text-primary: #000000;
+  --text-primary: #000;
   --input-background: #E4E4E4;
   --button-background: #26262E;
   --button-text: #F6F6F6;
+  --text-input: rgba(0, 0, 0, 0.3);
 }
 
 body {

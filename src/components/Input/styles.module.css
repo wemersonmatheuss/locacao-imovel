@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 20px 18px;
+  border-radius: 10px;
+  background-color: var(--input-background);
+  border: none;
+}
+
+.input::placeholder {
+  color: var(--text-input);
+  font-weight: 600;
+  font-style: bold;
+  font-size: 14px;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
