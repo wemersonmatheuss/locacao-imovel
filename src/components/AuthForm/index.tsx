@@ -1,6 +1,8 @@
+import styles from "./styles.module.css"
+
 import { Input } from "../Input"
 import { Button } from "../Button"
-import styles from "./styles.module.css"
+import { useNavigate } from "react-router-dom"
 
 type AuthFormProps = {
   type: "login" | "register"
@@ -8,6 +10,15 @@ type AuthFormProps = {
 
 export function AuthForm({ type }: AuthFormProps) {
   const isRegister = type === "register"
+  const navigate = useNavigate()
+
+  function handleNavigate() {
+    if (isRegister) {
+      navigate("/")
+    } else {
+      navigate("/register")
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -32,21 +43,43 @@ export function AuthForm({ type }: AuthFormProps) {
       )}
 
       <p className={styles.linkText}>
-        {isRegister
-          ? "Já possui uma conta? Clique aqui!"
-          : "Ainda não possui conta? Clique aqui!"}
+        {isRegister ? (
+          <>
+            Já possui uma conta?{" "}
+            <span
+              className={styles.link}
+              onClick={handleNavigate}
+            >
+              Clique aqui!
+            </span>
+          </>
+        ) : (
+          <>
+            Ainda não possui conta?{" "}
+            <span
+              className={styles.link}
+              onClick={handleNavigate}
+            >
+              Clique aqui!
+            </span>
+          </>
+        )}
       </p>
 
-      <Button
-        text={isRegister ? "Cadastrar" : "Acessar"}
-      />
+      <div className={styles.divBottom}>
+        <Button
+          text={isRegister ? "Cadastrar" : "Acessar"}
+        />
 
-      <div className={styles.terms}>
-        <input type="checkbox" id="terms" />
-        <label htmlFor="terms">
-          Li e aceito os termos de uso.
-        </label>
+          <div className={styles.terms}>
+            <input type="checkbox" id="terms" className={styles.checkbox}/>
+            <label htmlFor="terms">
+              Li e aceito os termos de uso.
+            </label>
+          </div>
       </div>
+
+      
     </div>
   )
 }
