@@ -1,0 +1,18 @@
+.container {
+  width: 400px;
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+}
+
+.linkText {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}

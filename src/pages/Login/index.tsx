@@ -1,9 +1,11 @@
 import styles from "./styles.module.css"
 
+import { AuthForm } from "../../components/AuthForm"
+
 export function Login() {
   return (
     <div className={styles.container}>
-      <h1>Login</h1>
+      <AuthForm type="login" />
     </div>
   )
 }
