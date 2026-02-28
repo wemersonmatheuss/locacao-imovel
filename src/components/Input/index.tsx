@@ -8,13 +8,10 @@ type InputProps = {
 }
 
 export function Input({ label, type, placeholder }: InputProps) {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword] = useState(false)
 
   const isPassword = type === "password"
 
-  function handleTogglePassword() {
-    setShowPassword(!showPassword)
-  }
 
   return (
     <div className={styles.container}>
@@ -27,15 +24,7 @@ export function Input({ label, type, placeholder }: InputProps) {
           className={styles.input}
         />
 
-        {isPassword && (
-          <button
-            type="button"
-            onClick={handleTogglePassword}
-            className={styles.eyeButton}
-          >
-            👁️
-          </button>
-        )}
+  
       </div>
     </div>
   )
