@@ -42,3 +42,15 @@
 .divBottom {
   margin-top: 15px;
 }
+
+.termsLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.required {
+  color: red;
+  font-size: 13px;
+  margin-top: 2px;
+}

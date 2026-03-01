@@ -11,6 +11,8 @@
   font-size: 20px;
   font-family: var(--font-primary);
   color: var(--text-primary);
+  display: flex;
+  align-items: flex-start;
 }
 
 .inputWrapper {
@@ -41,4 +43,10 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.required {
+  color: rgb(255, 0, 0);
+  font-size: 13px;
+  margin-left: 3px;
 }
