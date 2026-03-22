@@ -1,3 +1,85 @@
 .container {
-  padding: 20px;
+  display: flex;
+  height: 100vh;
+}
+
+/* ESQUERDA */
+.left {
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* DIREITA */
+.right {
+  width: 50%;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* TEXTOS */
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: var(--font-primary);
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: var(--font-secondary);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* LABEL */
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+
+  font-family: var(--font-secondary);
+}
+
+/* SELECT */
+select {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* espaço pra seta */
+
+  border-radius: 8px;
+  border: none;
+
+  background-color: var(--input-background);
+  color: #555;
+
+  /* REMOVE seta padrão */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* ADICIONA tua imagem */
+  background-image: url("../../assets/arrow.png");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
 }
