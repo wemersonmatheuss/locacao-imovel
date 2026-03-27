@@ -3,9 +3,11 @@ import styles from "./styles.module.css"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
-
 import { Input } from "../Input"
 import { Button } from "../Button"
+
+
+import { cadastrarUsuario, loginUsuario } from "../../services/api"
 
 type AuthFormProps = {
   type: "login" | "register"
@@ -27,28 +29,51 @@ export function AuthForm({ type }: AuthFormProps) {
     }
   }
 
-  function handleSubmit() {
-    if (!email) {
-      alert("Preencha o campo de e-mail")
-      return
-    }
 
-    if (!password) {
-      alert("Preencha o campo de senha")
-      return
-    }
+  async function handleSubmit() {
+      if (!email) {
+        alert("Preencha o campo de e-mail")
+        return
+      }
 
-    if (isRegister && !confirmPassword) {
-      alert("Preencha o campo de confirmar senha")
-      return
-    }
+      if (!password) {
+        alert("Preencha o campo de senha")
+        return
+      }
 
-    if (isRegister && password !== confirmPassword) {
-      alert("As senhas não coincidem")
-      return
-    }
+      if (isRegister && !confirmPassword) {
+        alert("Preencha o campo de confirmar senha")
+        return
+      }
 
-    alert("Formulário válido!")
+      if (isRegister && password !== confirmPassword) {
+        alert("As senhas não coincidem")
+        return
+      }
+
+      try {
+        if (isRegister) {
+          await cadastrarUsuario({
+            email,
+            senha: password,
+            confirmasenha: confirmPassword
+          })
+
+          alert("Cadastro realizado com sucesso!")
+          navigate("/")
+        } else {
+          await loginUsuario({
+            email,
+            senha: password
+          })
+
+          alert("Login realizado com sucesso!")
+          navigate("/home")
+        }
+      } catch (error) {
+        console.error(error)
+        alert("Erro ao " + (isRegister ? "cadastrar" : "logar"))
+      }
   }
 
   return (
@@ -86,20 +111,14 @@ export function AuthForm({ type }: AuthFormProps) {
         {isRegister ? (
           <>
             Já possui uma conta?{" "}
-            <span
-              className={styles.link}
-              onClick={handleNavigate}
-            >
+            <span className={styles.link} onClick={handleNavigate}>
               Clique aqui!
             </span>
           </>
         ) : (
           <>
             Ainda não possui conta?{" "}
-            <span
-              className={styles.link}
-              onClick={handleNavigate}
-            >
+            <span className={styles.link} onClick={handleNavigate}>
               Clique aqui!
             </span>
           </>
@@ -119,8 +138,8 @@ export function AuthForm({ type }: AuthFormProps) {
             className={styles.checkbox}
           />
           <label htmlFor="terms" className={styles.termsLabel}>
-              Li e aceito os termos de uso.
-              <span className={styles.required}>*</span>
+            Li e aceito os termos de uso.
+            <span className={styles.required}>*</span>
           </label>
         </div>
       </div>
