@@ -23,18 +23,16 @@ O sistema tem como foco:
 
 * Interface construída com **React**
 * Formulários para coleta de dados do usuário
-* Integração com API do back-end
+* Integração com o back-end
 * Organização de componentes
 * Estruturação de fluxo de dados
-* Aplicação de conceitos de UX
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 * **React** – construção da interface
-* **JavaScript** – lógica da aplicação
-* **HTML5 & CSS3** – estrutura e estilização
+* **CSS3** – estilização da aplicação
 
 ---
 
@@ -89,7 +87,7 @@ Certifique-se de que o servidor Java esteja rodando corretamente.
 
 ## 💬 Considerações finais
 
-Este projeto proporcionou experiência prática no desenvolvimento full stack, incluindo integração entre front-end e back-end, organização de código e construção de uma aplicação com lógica de recomendação.
+Este projeto proporcionou experiência prática no desenvolvimento full stack, incluindo integração entre front-end e back-end e construção de aplicações com fluxo completo de dados.
 
 ---
 
