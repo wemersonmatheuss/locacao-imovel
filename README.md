@@ -1,73 +1,99 @@
-# React + TypeScript + Vite
+# 🏡 Sistema de Recomendação de Imóveis — Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido como parte de um trabalho acadêmico, com o objetivo de criar uma aplicação full stack para recomendação de imóveis com base nas preferências do usuário.
 
-Currently, two official plugins are available:
+Este repositório contém a parte **front-end**, desenvolvida em **React**, responsável pela interface e interação com o usuário.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📌 Objetivo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> Permitir que o usuário informe suas preferências de imóvel e receba recomendações com base em um sistema de decisão automatizado.
 
-## Expanding the ESLint configuration
+O sistema tem como foco:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* Coletar informações relevantes do usuário
+* Facilitar a busca por imóveis ideais
+* Melhorar a experiência na tomada de decisão
+* Simular um sistema inteligente de recomendação
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧠 O que foi desenvolvido neste projeto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* Interface construída com **React**
+* Formulários para coleta de dados do usuário
+* Integração com API do back-end
+* Organização de componentes
+* Estruturação de fluxo de dados
+* Aplicação de conceitos de UX
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tecnologias Utilizadas
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **React** – construção da interface
+* **JavaScript** – lógica da aplicação
+* **HTML5 & CSS3** – estrutura e estilização
+
+---
+
+## 🔗 Integração com Back-end
+
+Este projeto funciona em conjunto com o back-end desenvolvido em Java:
+
+👉 https://github.com/ArthurVictor42/projeto-5-periodo
+
+---
+
+## 🖥️ Como rodar o projeto localmente
+
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/wemersonmatheuss/locacao-imovel.git
+   ```
+
+2. Acesse a pasta do projeto:
+
+   ```bash
+   cd locacao-imovel
+   ```
+
+3. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+4. Execute o projeto:
+
+   ```bash
+   npm start
+   ```
+
+5. A aplicação será aberta em:
+
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## ⚠️ Observação
+
+Este projeto depende do back-end para funcionamento completo.
+Certifique-se de que o servidor Java esteja rodando corretamente.
+
+---
+
+## 💬 Considerações finais
+
+Este projeto proporcionou experiência prática no desenvolvimento full stack, incluindo integração entre front-end e back-end, organização de código e construção de uma aplicação com lógica de recomendação.
+
+---
+
+## 👨‍💻 Autor
+
+Wemerson Matheus
+Desenvolvedor Front-end & Freelancer
