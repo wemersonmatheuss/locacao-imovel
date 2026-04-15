@@ -93,5 +93,4 @@ Este projeto proporcionou experiência prática no desenvolvimento full stack, i
 
 ## 👨‍💻 Autor
 
-Wemerson Matheus
-Desenvolvedor Front-end & Freelancer
+Arthur Victor (Desenvolvedor Back-end) & Wemerson Matheus (Desenvolvedor Front-end)
