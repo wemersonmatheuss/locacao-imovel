@@ -5,11 +5,9 @@
 }
 
 :root {
-  /* FONT */
   --font-primary: "IBM Plex Mono", monospace;
   --font-secondary: "Inter", sans-serif;
 
-  /* COLORS */
   --text-primary: #000;
   --input-background: #E4E4E4;
   --button-background: #26262E;
