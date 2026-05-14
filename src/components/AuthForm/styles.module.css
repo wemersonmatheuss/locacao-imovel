@@ -21,14 +21,9 @@
 
 .terms {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   margin-top: 17px;
-}
-
-.terms label {
-  font-weight: 600;
-  font-family: var(--font-secondary);
 }
 
 .checkbox {
@@ -43,14 +38,40 @@
   margin-top: 15px;
 }
 
-.termsLabel {
-  display: flex;
-  align-items: flex-start;
-  gap: 2px;
-}
-
 .required {
   color: red;
   font-size: 13px;
   margin-top: 2px;
+}
+
+.passwordHint {
+  margin-top: 6px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.termsTextWrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: 600;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.termsLink {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.termsLink:hover {
+  opacity: 0.85;
 }

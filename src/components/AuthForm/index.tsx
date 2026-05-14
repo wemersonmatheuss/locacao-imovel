@@ -1,6 +1,6 @@
 import styles from "./styles.module.css"
 
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 import { Input } from "../Input"
@@ -51,6 +51,11 @@ export function AuthForm({ type }: AuthFormProps) {
         return
       }
 
+      if (isRegister && (password.length < 8 || password.length > 16)) {
+        alert("A senha deve ter entre 8 e 16 caracteres (exigência do servidor)")
+        return
+      }
+
       try {
         if (isRegister) {
           await cadastrarUsuario({
@@ -72,7 +77,8 @@ export function AuthForm({ type }: AuthFormProps) {
         }
       } catch (error) {
         console.error(error)
-        alert("Erro ao " + (isRegister ? "cadastrar" : "logar"))
+        const fallback = "Erro ao " + (isRegister ? "cadastrar" : "logar")
+        alert(error instanceof Error && error.message ? error.message : fallback)
       }
   }
 
@@ -87,14 +93,21 @@ export function AuthForm({ type }: AuthFormProps) {
         required
       />
 
-      <Input
-        label="Senha"
-        type="password"
-        placeholder="Digite sua senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
+      <div>
+        <Input
+          label="Senha"
+          type="password"
+          placeholder="Digite sua senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {isRegister && password.length > 0 ? (
+          <p className={styles.passwordHint} role="status">
+            A senha deve ter entre 8 e 16 caracteres.
+          </p>
+        ) : null}
+      </div>
 
       {isRegister && (
         <Input
@@ -136,11 +149,16 @@ export function AuthForm({ type }: AuthFormProps) {
             type="checkbox"
             id="terms"
             className={styles.checkbox}
+            aria-label="Declaro que li e aceito os termos de uso"
           />
-          <label htmlFor="terms" className={styles.termsLabel}>
-            Li e aceito os termos de uso.
-            <span className={styles.required}>*</span>
-          </label>
+          <span className={styles.termsTextWrap}>
+            <Link to="/termos" className={styles.termsLink}>
+              Li e aceito os termos de uso.
+            </Link>
+            <span className={styles.required} aria-hidden>
+              *
+            </span>
+          </span>
         </div>
       </div>
     </div>

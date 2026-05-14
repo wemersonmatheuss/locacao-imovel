@@ -18,6 +18,11 @@
   transition: 0.2s;
 }
 
-.button:hover {
+.button:hover:not(:disabled) {
   opacity: 0.9;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
