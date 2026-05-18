@@ -1,6 +1,5 @@
 import { useState } from "react"
 import styles from "./styles.module.css"
-import background from "../../assets/image-background.png"
 import { Button } from "../../components/Button"
 import {
   buscarImoveis,
@@ -252,21 +251,20 @@ function ImovelResultCard({ imovel, destaque }: ImovelResultCardProps) {
           : styles.resultCard
       }
     >
-      <ul className={styles.summaryList}>
+      <div className={styles.fieldGrid}>
         {rows.map(([label, value]) => (
-          <li key={label} className={styles.summaryRow}>
-            <span className={styles.summaryLabel}>{label}</span>
-            <span className={styles.summaryValue}>{value}</span>
-          </li>
+          <div key={label} className={styles.fieldCard}>
+            <span className={styles.fieldCardTitle}>{label}</span>
+            <span className={styles.fieldCardValue}>{value}</span>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
 
 export function Home() {
   const [filters, setFilters] = useState<Filters>(defaultFilters)
-  const [modalOpen, setModalOpen] = useState(false)
   const [searchLoading, setSearchLoading] = useState(false)
   const [searchError, setSearchError] = useState<string | null>(null)
   const [imovelResults, setImovelResults] = useState<ImovelApi[] | null>(null)
@@ -294,7 +292,6 @@ export function Home() {
   }
 
   async function handleProcurarImovel() {
-    setModalOpen(true)
     setSearchLoading(true)
     setSearchError(null)
     setSearchNotice(null)
@@ -312,119 +309,93 @@ export function Home() {
     }
   }
 
-  function closeModal() {
-    setModalOpen(false)
-    setSearchLoading(false)
-    setSearchError(null)
-    setSearchNotice(null)
-    setImovelResults(null)
-  }
+  const hasSearched = imovelResults !== null || searchError !== null
 
   return (
     <div className={styles.container}>
-      {modalOpen ? (
-        <div
-          className={styles.modalOverlay}
-          role="presentation"
-          onClick={closeModal}
-        >
-          <div
-            className={styles.modal}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="imovel-result-title"
-            aria-busy={searchLoading}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 id="imovel-result-title" className={styles.modalTitle}>
-              Imóvel ideal para você
-            </h2>
-            <p className={styles.modalSubtitle}>
-              Resultado da recomendação com base nas suas preferências e nos
-              dados do sistema.
-            </p>
-
-            {searchNotice ? (
-              <p className={styles.modalNotice} role="status">
-                {searchNotice}
-              </p>
-            ) : null}
-
-            {searchLoading ? (
-              <p className={styles.modalStatus}>Buscando imóvel…</p>
-            ) : null}
-
-            {searchError ? (
-              <p className={styles.modalError} role="alert">
-                {searchError}
-              </p>
-            ) : null}
-
-            {!searchLoading && !searchError && imovelResults ? (
-              imovelResults.length === 0 ? (
-                <div className={styles.modalEmptyBlock}>
-                  <p className={styles.modalStatus}>
-                    O servidor respondeu, mas não há imóveis na lista. As causas
-                    mais comuns são:
-                  </p>
-                  <ul className={styles.modalHintList}>
-                    <li>
-                      <strong>Banco vazio ou sem linhas compatíveis</strong> — no
-                      Swagger, envie o mesmo filtro com campos vazios; se voltar
-                      lista vazia, não há registros no MySQL para retornar.
-                    </li>
-                    <li>
-                      <strong>CORS ou porta diferente de 5173</strong> — rode o
-                      front com <code>npm run dev</code>: as chamadas vão para
-                      o mesmo endereço do Vite e o proxy encaminha ao Java na
-                      porta 8080. Se abrir o build em outra porta, ajuste o
-                      CORS no back-end.
-                    </li>
-                    <li>
-                      Já tentamos relaxar preço, finalidade (Venda/Locação) e
-                      ampliar cidade e tipo; se ainda assim vier vazio, o
-                      cadastro não tem imóveis que passem nos filtros do
-                      serviço.
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                <div className={styles.resultStack}>
-                  <ImovelResultCard imovel={imovelResults[0]} destaque />
-
-                  {imovelResults.length > 1 ? (
-                    <>
-                      <h3 className={styles.modalSecondaryTitle}>
-                        Outras opções ({imovelResults.length - 1})
-                      </h3>
-                      <ul className={styles.altList}>
-                        {imovelResults.slice(1).map((imovel, idx) => (
-                          <li key={imovel.idImovel ?? idx}>
-                            <ImovelResultCard imovel={imovel} />
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  ) : null}
-                </div>
-              )
-            ) : null}
-
-            <button
-              type="button"
-              className={styles.modalClose}
-              onClick={closeModal}
-            >
-              Fechar
-            </button>
-          </div>
-        </div>
-      ) : null}
-
-      <div
+      <aside
         className={styles.left}
-        style={{ backgroundImage: `url(${background})` }}
-      />
+        aria-labelledby="imovel-result-title"
+        aria-busy={searchLoading}
+      >
+        <h2 id="imovel-result-title" className={styles.panelTitle}>
+          Imóvel ideal para você
+        </h2>
+        <p className={styles.panelSubtitle}>
+          Resultado da recomendação com base nas suas preferências.
+        </p>
+
+        {!hasSearched && !searchLoading ? (
+          <p className={styles.panelPlaceholder}>
+            Preencha os filtros à direita e clique em{" "}
+            <strong>Procurar imóvel</strong> para ver os resultados aqui.
+          </p>
+        ) : null}
+
+        {searchNotice ? (
+          <p className={styles.panelNotice} role="status">
+            {searchNotice}
+          </p>
+        ) : null}
+
+        {searchLoading ? (
+          <p className={styles.panelStatus}>Buscando imóvel…</p>
+        ) : null}
+
+        {searchError ? (
+          <p className={styles.panelError} role="alert">
+            {searchError}
+          </p>
+        ) : null}
+
+        {!searchLoading && !searchError && imovelResults ? (
+          imovelResults.length === 0 ? (
+            <div className={styles.panelEmptyBlock}>
+              <p className={styles.panelStatus}>
+                O servidor respondeu, mas não há imóveis na lista. As causas
+                mais comuns são:
+              </p>
+              <ul className={styles.panelHintList}>
+                <li>
+                  <strong>Banco vazio ou sem linhas compatíveis</strong> — no
+                  Swagger, envie o mesmo filtro com campos vazios; se voltar
+                  lista vazia, não há registros no MySQL para retornar.
+                </li>
+                <li>
+                  <strong>CORS ou porta diferente de 5173</strong> — rode o
+                  front com <code>npm run dev</code>: as chamadas vão para o
+                  mesmo endereço do Vite e o proxy encaminha ao Java na porta
+                  8080.
+                </li>
+                <li>
+                  Já tentamos relaxar preço, finalidade e ampliar cidade e
+                  tipo; se ainda assim vier vazio, o cadastro não tem imóveis
+                  compatíveis.
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className={styles.resultStack}>
+              <ImovelResultCard imovel={imovelResults[0]} destaque />
+
+              {imovelResults.length > 1 ? (
+                <>
+                  <h3 className={styles.panelSecondaryTitle}>
+                    Outras opções ({imovelResults.length - 1})
+                  </h3>
+                  <ul className={styles.altList}>
+                    {imovelResults.slice(1).map((imovel, idx) => (
+                      <li key={imovel.idImovel ?? idx}>
+                        <ImovelResultCard imovel={imovel} />
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
+            </div>
+          )
+        ) : null}
+      </aside>
 
       <div className={styles.right}>
         <h1 className={styles.title}>Procure o imóvel ideal</h1>
